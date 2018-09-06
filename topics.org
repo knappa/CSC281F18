@@ -1,0 +1,233 @@
+* Week 1
+** day 1:
+syllabus
+hello world
+
+** day 2:
+standard tutorials: https://docs.oracle.com/javase/tutorial/index.html
+*** primitive-ish types:
+https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html
+**** integer: long (64), int (32), short (16), byte (8)
+
+no unsigned versions
+
+++var, var++
+
+decimal, hex 0xF, binary 0b1111
+
+operators: shifts << and >> (signed), >>> (unsigned), & (bit and), | (bit or), ^ (bit xor), ~ (bit not)
+
+division / is integer division only. no autocasting like python3
+
+**** floating point: double (64), float (32)
+
+avoid equality testing. not internally expressed as decimal. 
+https://en.wikipedia.org/wiki/Double-precision_floating-point_format#IEEE_754_double-precision_binary_floating-point_format:_binary64
+
+**** boolean (size undef)
+
+operators: &&, || short circuited, ! (not)
+inequalities: the usual
+
+**** char (16)
+
+*** reference types:
+
+***** String
+
+note equality == versus .equals()
+
+concantenation with +
+
+"abc".length()
+
+**** array types
+
+int[], char[]
+note that char[] != String
+arr.length
+initialize via int[] array = {...};
+System.arraycopy
+
+***** multidimensional arrays (initializing, ragged, etc)
+
+int[][] arr = new int[10][10];
+
+int[][] arr = { {0}, {0,1}, {0,1,2} };
+
+* Week 2
+** day 3:
+
+*** command-line arguments
+
+public static void main(String[] args) {...}
+args contains "command line arguments"
+
+*** conditionals and loops
+
+**** if statements 
+
+if (boolean) {...} else if (boolean) {...} else {...}
+
+**** switch statements
+
+switch (var) {
+case 1:
+...
+break;
+case 2:
+...
+break;
+default:
+
+}
+fall through: rarely what you want, except when cases are same
+switch (n % 3) {
+case 0:
+System.out.println("zero"); break;
+case 1: case 2:
+System.out.println("not zero"); break;
+default:
+System.out.println("negative");
+}
+
+parameter for switch should be primitive type, or in JDK7+ a String. General reference types not
+supported, but you can fake it with hash codes if you deal with collisions.
+
+Duff's device?
+
+**** while and do-while loops
+
+while (condition) { ... }
+
+do { ... } while(condition);
+
+do-while useful for when you want it to happen at least once. Ex: user prompt
+
+**** for loop
+
+for( init; term; inc ) {...}
+
+exs:
+
+for(int i = 0; i < 10; i++) {...}
+
+for(int n = 1; n < 1_000_000; n *= 2) {...}
+
+if you have a 'Collection' or array, 'enhanced' for loop:
+
+int[] numbers = {8,6,7,5,3,0,9};
+for (int item : numbers) {
+  System.out.println(item);
+}
+
+**** continue and break
+
+continue: goto next iteration or (inner-most) loop
+break: break out of (inner-most) loop
+
+*** methods and classes
+
+**** static vs. non-static
+
+     static - does not depend on an instance of a class, all instances share the same static
+     variables
+
+     i.e. 
+#+BEGIN_SRC java
+class Foo {
+
+  private static int counterOne = 0;
+  private int counterTwo = 0;
+
+  public static void doThingOne() {
+    System.out.println(counterOne);
+    counterOne++;
+  }
+
+  public void doThingTwo() {
+    System.out.println(counterTwo);
+    counterTwo++;
+  }
+
+}
+#+END_SRC
+
+     calling Foo.doThingOne() makes sense, calling Foo.doThingTwo() does not. You must do:
+#+BEGIN_SRC java
+  Foo foo = new Foo(); 
+  foo.doThingTwo();
+#+END_SRC
+
+     static methods can only access static fields
+
+**** access modifiers
+
+     public - accessable anywhere
+     protected - accessable from same class or any subclass 
+     no-modifier - accessable from same class or other classes from the same package
+     private - only accessable from the same class (can be another instance)
+     
+     Which to use? Rule of thumb: use the most restrictive you can. This reduces the "exposed" part of
+     your code and usually helps reduce complexity.
+
+***** Immutability! 
+
+      For data classes, it often makes sense to make it so their underlying data never changes.
+1. Upside: 
+   * easier to reason about (no one comes and changes the data while you aren't looking)
+   * can sensibly use them in data structures like hash-tables (think of python dicts)
+2. Downside: 
+   extra copying
+
+**** multiple dispatch
+     can have multiple methods with the same name, but different types and number of parameters
+#+BEGIN_SRC java
+class Foo {
+  public static void printType(int i) {
+    System.out.println("that is an int");
+  }
+  public static void printType(double d) {
+    System.out.println("that is an double");
+  }
+  public static void printType(int i, double d) {
+    System.out.println("that is an int and a double");
+  }
+  public static void printType(double d, int i) {
+    System.out.println("that is a double and an int");
+  }
+}
+#+END_SRC
+     
+**** constructors
+     
+     How to make an immutable class to store 3d pixels? (voxels)
+#+BEGIN_SRC java
+public class Voxel {
+  private final int x, y, z;
+ 
+  public Voxel(int x, int y, int z) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+  }
+
+  // and more methods to get x,y,z values, compute 3D distances, etc
+}
+#+END_SRC
+     notes:
+     * constructor looks kind of like a method
+
+     * "this" refers to this instance of class
+
+     * "final" fields can be set exactly _once_ (can also be used in parameters to methods)
+
+     * can have several constructors with different parameters
+
+     * there is a default, no parameter, constructor which sets all fields to default values
+       
+     * not something we will do here: you can make the constructor protected or private and have
+       another class construct the object. Usually called a "Factory" or "Builder". Look for
+       AbstractSingletonProxyFactoryBean jokes online, but it sometimes makes sense.
+       
+* Week 3
