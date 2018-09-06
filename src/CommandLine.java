@@ -8,7 +8,16 @@ public class CommandLine {
 
   public static void main(String[] args) {
 
-    System.out.println();
+    int firstArg = Integer.valueOf(args[0]);
+    System.out.println(firstArg + 1);
+
+    //System.out.println(Arrays.toString(args));
+
+    /*
+    for( int i = 0; i < args.length; i++) {
+      System.out.println(args[i]);
+    }
+    */
 
   }
 }
