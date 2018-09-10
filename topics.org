@@ -199,6 +199,36 @@ class Foo {
 }
 #+END_SRC
      
+* Week 3
+
+** day 4:
+
+*** standard input/output/error
+
+    # input
+    System.in
+    
+    Usually don't use it directly, too much pain. Use java.util.Scanner (See api docs)
+    
+    # outputs
+    System.out
+    System.err
+
+*** using Parameterized Types
+
+    ex: a resizable array, ArrayList. Type should include what kind of thing it contains. _Could_
+    use most general thing: "Object". but then you could put in anything and the type system won't
+    help you. To put in Strings, use ArrayList<String>
+
+*** in class activity
+
+    shuffle (use java.util.Random or Math.random())
+
+
+** day 5:
+
+*** methods and classes (finish)
+
 **** constructors
      
      How to make an immutable class to store 3d pixels? (voxels)
@@ -230,4 +260,16 @@ public class Voxel {
        another class construct the object. Usually called a "Factory" or "Builder". Look for
        AbstractSingletonProxyFactoryBean jokes online, but it sometimes makes sense.
        
-* Week 3
+
+**** Inheritance
+
+    All classes extend Object. Can also implement interfaces.
+
+    individual classes are a "sum type": They contain this data _and_ that data, etc as fields.
+
+    different classes which descend from same class or implement same interface are product types:
+    If "A" is an interface implemented by classes "B" and "C", then an "A" can be a "B" _or_ a "C".
+
+    example: classes to describe a the result of a web request. but success and failure contain
+    different data. e.g. success has a payload, failure has an error code. Don't confuse the two!
+    put them in different classes which implement a common interface.
