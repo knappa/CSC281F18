@@ -273,3 +273,48 @@ public class Voxel {
     example: classes to describe a the result of a web request. but success and failure contain
     different data. e.g. success has a payload, failure has an error code. Don't confuse the two!
     put them in different classes which implement a common interface.
+* Week 4
+
+** day 6:
+
+*** project 1 part 1 discussion
+
+    Any questions?
+
+*** shuffle algorithm
+
+    discussion: 
+    * What did you do? 
+    * How do we know that all possibilities are equally likely?
+    
+**** Fisher-Yates/Knuth algorithm
+
+     For a length N array:
+
+     for each index k, starting at index N-1 and moving to index 0 by single steps:
+
+     roll a random index in [0,k) and swap to position k.
+
+*** sorting
+
+    How do you know when a list is sorted?
+
+    Sorting ideas from the audience?
+
+**** bogo sort
+
+     shuffle and check
+
+     How long should this take, on average?
+
+     See also: https://xkcd.com/1185/ slowsort stoogesort
+
+**** bubble sort
+
+     scan across array and fix pairwise swaps when you come to them
+
+     the largest bubbles to the top, so that one is in the right place for sure
+     
+     do it again, but skip the last entry since we know it ok
+
+     you can bail out early if you make a pass where there are no swaps
