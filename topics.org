@@ -274,7 +274,6 @@ public class Voxel {
     different data. e.g. success has a payload, failure has an error code. Don't confuse the two!
     put them in different classes which implement a common interface.
 * Week 4
-
 ** day 6:
 
 *** project 1 part 1 discussion
@@ -295,6 +294,7 @@ public class Voxel {
 
      roll a random index in [0,k) and swap to position k.
 
+** day 7:
 *** sorting
 
     How do you know when a list is sorted?
@@ -318,3 +318,4 @@ public class Voxel {
      do it again, but skip the last entry since we know it ok
 
      you can bail out early if you make a pass where there are no swaps
+*** project work session
