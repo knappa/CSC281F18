@@ -21,29 +21,29 @@ public class MyFirstSort {
 
   public static void bubbleSort(int[] array) {
 
-    for(int stoppingIndex = array.length; stoppingIndex > 0; stoppingIndex--) {
+    for (int stoppingIndex = array.length; stoppingIndex > 0; stoppingIndex--) {
 
       boolean didASwap = false;
-      
-      for(int comparisonIndex = 0; comparisonIndex < stoppingIndex-1; comparisonIndex++) {
 
-	if(array[comparisonIndex] > array[comparisonIndex+1]) {
-	  // do the swap
-	  System.out.println("swapping " + array[comparisonIndex] + " and " + array[comparisonIndex+1]);
-	  int temp = array[comparisonIndex];
-	  array[comparisonIndex] = array[comparisonIndex+1];
-	  array[comparisonIndex+1] = temp;
-	  didASwap = true;
-	} else {
-	  System.out.println("not swapping " + array[comparisonIndex] + " and " + array[comparisonIndex+1]);
-	}
+      for (int comparisonIndex = 0; comparisonIndex < stoppingIndex - 1; comparisonIndex++) {
+
+        if (array[comparisonIndex] > array[comparisonIndex + 1]) {
+          // do the swap
+          System.out.println("swapping " + array[comparisonIndex] + " and " + array[comparisonIndex + 1]);
+          int temp = array[comparisonIndex];
+          array[comparisonIndex] = array[comparisonIndex + 1];
+          array[comparisonIndex + 1] = temp;
+          didASwap = true;
+        } else {
+          System.out.println("not swapping " + array[comparisonIndex] + " and " + array[comparisonIndex + 1]);
+        }
 
       }
 
-      if( !didASwap ) return;
+      if (!didASwap) return;
 
     }
 
   }
-  
+
 }
