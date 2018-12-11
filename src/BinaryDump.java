@@ -12,11 +12,12 @@ public class BinaryDump {
     while(!BinaryStdIn.isEmpty()) {
       bit = BinaryStdIn.readBoolean();
       if(bit)
-        System.out.println("1");
+        System.out.print("1");
       else
-        System.out.println("0");
+        System.out.print("0");
     }
 
+    System.out.println();
   }
 
 
