@@ -15,11 +15,8 @@ b e
 c d
 c e
 d e
-7
+4
 red
-orange
-yellow
 green
 blue
-indigo
-violet
+purple
